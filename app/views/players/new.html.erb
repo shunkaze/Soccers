@@ -1,0 +1,19 @@
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <% if @player.errors.any? %>
+    <%= @player.errors.count %> errors prohibited this obj from being saved:
+    <ul>
+    <% @player.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  <h2>Player New Post</h2>
+  <%= form_with model:@player, local:true do |f| %>
+    <%= flash[:notice] %>
+    <h5 class="font-weight-light">Name</h5>
+    <%= f.text_field :title, autofocus: true %>
+    <h5 class="font-weight-light">Opinion</h5>
+    <%= f.text_area :body %>
+    <div><%= f.submit "Create Player" %></div>
+  <% end %>
+</div>
