@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
   def index
-    @search = Player.ransack(params[:q])
-    @players = @search.result
-    @search = Team.ransack(params[:q])
-    @teams = @search.result
+    @search_player = Player.ransack(params[:q])
+    @search_team = Team.ransack
+    @players = @search_player.result
+    @search_team = Team.ransack(params[:q])
+    @search_player = Player.ransack
+    @teams = @search_team.result
     @user = current_user
     @users = User.all
   end
 
   def show
-    @search = Player.ransack(params[:q])
-    @players = @search.result
-    @search = Team.ransack(params[:q])
-    @teams = @search.result
+    @search_player = Player.ransack(params[:q])
+    @search_team = Team.ransack
+    @players = @search_player.result
+    @search_team = Team.ransack(params[:q])
+    @search_player = Player.ransack
+    @teams = @search_team.result
     @user = User.find(params[:id])
     @players = @user.players.all
     @teams = @user.teams.all

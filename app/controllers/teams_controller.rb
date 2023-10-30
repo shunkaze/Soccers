@@ -4,8 +4,6 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @search = Team.ransack(params[:q])
-    @teams = @search.result
     @user = current_user
     @team = @user.teams.new(team_params)
     @teams = Team.all
@@ -18,8 +16,9 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @search = Team.ransack(params[:q])
-    @teams = @search.result
+    @search_team = Team.ransack(params[:q])
+    @search_player = Player.ransack
+    @teams = @search_team.result
     @team = Team.new
     @user = current_user
   end
@@ -32,8 +31,9 @@ class TeamsController < ApplicationController
   end
 
   def show
-    @search = Team.ransack(params[:q])
-    @teams = @search.result
+    @search_team = Team.ransack(params[:q])
+    @search_player = Player.ransack
+    @teams = @search_team.result
     @team = Team.find(params[:id])
     @user = @team.user
   end
