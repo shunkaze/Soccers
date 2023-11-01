@@ -11,13 +11,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @search_player = Player.ransack(params[:q])
     @search_team = Team.ransack
     @players = @search_player.result
     @search_team = Team.ransack(params[:q])
     @search_player = Player.ransack
     @teams = @search_team.result
-    @user = User.find(params[:id])
     @players = @user.players.all
     @teams = @user.teams.all
   end

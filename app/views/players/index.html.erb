@@ -6,7 +6,7 @@
         <h2>ユーザー情報</h2>
         <table class='table'>
           <tr>
-            <%= image_tag 'default-image.jpg' %>
+            <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "default-image.jpg", size: "100x100" %>
           </tr>
           <tr>
             <th>名前</th>
